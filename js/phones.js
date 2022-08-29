@@ -39,6 +39,7 @@ const displayPhones = (phones, dataLimit) => {
                         <h5 class="card-title">${phone.phone_name}</h5>
                         <p class="card-text">This is a longer card with supporting text below as a natural lead-in
                             to additional content. This content is a little bit longer.</p>
+                        <button onclick="loadDetails('${phone.slug}')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#phoneDetailsModal">View Details</button>
                     </div>
                 </div>
             `;
@@ -84,5 +85,27 @@ const toggleLoader = (isLoading) => {
     }
 }
 
+
+const loadDetails = (id) =>{
+    url = `https://openapi.programming-hero.com/api/phone/${id}`;
+    fetch(url)
+        .then(response => response.json())
+        .then(data=> displayDetails(data.data))
+}
+
+const displayDetails = (details) =>{
+    console.log(details);
+    document.getElementById('phoneTitle').innerText = details.name;
+
+    const detailsBody = document.getElementById('phoneDetails');
+    const sensorsArr = details.mainFeatures.sensors.map(sensor=> sensor);
+    const sensors = sensorsArr.join(", ");
+    detailsBody.innerHTML = `
+        <p>Chipset: ${details.mainFeatures.chipSet} </p>
+        <p>Display Size: ${details.mainFeatures.displaySize} </p>
+        <p>Memory: ${details.mainFeatures.memory} </p>
+        <p>Sensors: ${sensors}</p>
+    `;
+}
 
 loadPhones("a");
