@@ -20,7 +20,7 @@
                 class="d-inline-block border border-2 border-secondary mb-3 px-3 py-1 rounded-pill text-secondary">
                 <input id="input-search" type="text" class="border-0" placeholder="Seach your phone"
                     style="outline: none;">
-                <button onclick="loadSearch()" class="border-0 bg-body" id="btn-search"><i
+                <button onclick="loadSearch(10)" class="border-0 bg-body" id="btn-search"><i
                         class="fa-solid fa-magnifying-glass text-secondary"></i></button>
             </div>
         </div>
@@ -32,6 +32,9 @@
             </div>
             <div id="not-found-message" class="mt-4 d-none">
                 <h2 class="text-warning text-center">Result not found!</h2>
+            </div>
+            <div id="show-all-container" class="text-center mt-3 d-none">
+                <button onclick="loadSearch()" class="btn btn-primary">Show All</button>
             </div>
         </section>
         <section id="loader" class="mt-5 d-none" style="height: 100px;">

@@ -1,20 +1,34 @@
-const loadPhones = async (searchText) => {
+const loadPhones = async (searchText, dataLimit) => {
     // ----start loader----
     toggleLoader(true);
     const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
 
     const response = await fetch(url);
     const data = await response.json();
-    displayPhones(data.data);
+    displayPhones(data.data, dataLimit);
 }
 
-const displayPhones = (phones) => {
+const displayPhones = (phones, dataLimit) => {
     const phonesContainer = document.getElementById('phones-container');
     phonesContainer.textContent = ``;
     const notFoundMsg = document.getElementById('not-found-message');
     //display if not found
     if (phones.length) {
         notFoundMsg.classList.add('d-none');
+        const showAllContainer = document.getElementById('show-all-container');
+        // -----Add show all button--------
+        if(phones.length > 10){
+            showAllContainer.classList.remove('d-none');
+        }
+        else{
+            showAllContainer.classList.add('d-none');
+        }
+
+        // -----show phones-----
+        if(dataLimit){
+            phones = phones.slice(0, dataLimit);
+        }
+        
         phones.forEach(phone => {
             const div = document.createElement('div');
             div.classList.add('col');
@@ -42,14 +56,13 @@ const displayPhones = (phones) => {
 }
 
 //by clicking trigger the search button
-const loadSearch = () => {
+const loadSearch = (dataLimit) => {
     // ----start loader----
     toggleLoader(true);
 
     const inputSearch = document.getElementById('input-search');
     const searchText = inputSearch.value;
-    inputSearch.value = "";
-    loadPhones(searchText);
+    loadPhones(searchText, dataLimit);
 }
 //By pressing enter in the input field trigger the search button
 document.getElementById('input-search').addEventListener('keypress', (event) => {
@@ -70,5 +83,6 @@ const toggleLoader = (isLoading) => {
         loader.classList.add('d-none');
     }
 }
+
 
 loadPhones("a");
