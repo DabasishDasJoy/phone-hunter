@@ -37,8 +37,7 @@ const displayPhones = (phones, dataLimit) => {
                     <img src="${phone.image}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">${phone.phone_name}</h5>
-                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in
-                            to additional content. This content is a little bit longer.</p>
+                        <p class="card-text">${phone.brand}</p>
                         <button onclick="loadDetails('${phone.slug}')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#phoneDetailsModal">View Details</button>
                     </div>
                 </div>
@@ -98,7 +97,7 @@ const displayDetails = (details) =>{
     document.getElementById('phoneTitle').innerText = details.name;
 
     const detailsBody = document.getElementById('phoneDetails');
-    const sensorsArr = details.mainFeatures.sensors.map(sensor=> sensor);
+    const sensorsArr = details.mainFeatures.sensors? details.mainFeatures.sensors.map(sensor=> sensor) : "No sensors";
     /* 
         since sensors is an array. So, 
         first take those array elements then make them a text to place on an element.
@@ -109,6 +108,7 @@ const displayDetails = (details) =>{
         <p>Display Size: ${details.mainFeatures.displaySize} </p>
         <p>Memory: ${details.mainFeatures.memory} </p>
         <p>Sensors: ${sensors}</p>
+        <p>Realease Date: ${details.releaseDate ? details.releaseDate: "No release data found."} </p>
     `;
 }
 
