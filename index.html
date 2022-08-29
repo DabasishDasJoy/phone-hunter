@@ -12,14 +12,16 @@
 
 <body>
     <header>
-        <h1>Welcome To Phone Hunter</h1>
+        <h1 class="text-center mt-2 text-primary">Welcome To Phone Hunter</h1>
     </header>
-    <main class="container mt-5">
+    <main class="container my-5">
         <div class="d-flex justify-content-end">
             <div id="search"
                 class="d-inline-block border border-2 border-secondary mb-3 px-3 py-1 rounded-pill text-secondary">
-                <input id="input-search" type="text" class="border-0" placeholder="Seach your phone" style="outline: none;">
-                <button onclick="loadSearch()" class="border-0 bg-body" id="btn-search"><i class="fa-solid fa-magnifying-glass text-secondary"></i></button>
+                <input id="input-search" type="text" class="border-0" placeholder="Seach your phone"
+                    style="outline: none;">
+                <button onclick="loadSearch()" class="border-0 bg-body" id="btn-search"><i
+                        class="fa-solid fa-magnifying-glass text-secondary"></i></button>
             </div>
         </div>
         <!-- =========Phones Section========= -->
@@ -27,6 +29,16 @@
             <!-- --------phones-------- -->
             <div class="row row-cols-1 row-cols-md-3 g-4" id="phones-container">
                 <!-- ----Phones will be here----------- -->
+            </div>
+            <div id="not-found-message" class="mt-4 d-none">
+                <h2 class="text-warning text-center">Result not found!</h2>
+            </div>
+        </section>
+        <section id="loader" class="mt-5 d-none" style="height: 100px;">
+            <div class="d-flex justify-content-center">
+                <div class="spinner-border" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
             </div>
         </section>
         <!-- =========Phones Section========= -->
