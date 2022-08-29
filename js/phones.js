@@ -99,6 +99,10 @@ const displayDetails = (details) =>{
 
     const detailsBody = document.getElementById('phoneDetails');
     const sensorsArr = details.mainFeatures.sensors.map(sensor=> sensor);
+    /* 
+        since sensors is an array. So, 
+        first take those array elements then make them a text to place on an element.
+    */
     const sensors = sensorsArr.join(", ");
     detailsBody.innerHTML = `
         <p>Chipset: ${details.mainFeatures.chipSet} </p>
