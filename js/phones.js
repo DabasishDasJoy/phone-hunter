@@ -12,10 +12,11 @@ const displayPhones = (phones, dataLimit) => {
     const phonesContainer = document.getElementById('phones-container');
     phonesContainer.textContent = ``;
     const notFoundMsg = document.getElementById('not-found-message');
+    const showAllContainer = document.getElementById('show-all-container');
     //display if not found
     if (phones.length) {
         notFoundMsg.classList.add('d-none');
-        const showAllContainer = document.getElementById('show-all-container');
+        
         // -----Add show all button--------
         if(phones.length > 10){
             showAllContainer.classList.remove('d-none');
@@ -49,6 +50,7 @@ const displayPhones = (phones, dataLimit) => {
     //display if phone found
     else{
         notFoundMsg.classList.remove('d-none');
+        showAllContainer.classList.add('d-none');
     }
 
     // -------stop loader-------
